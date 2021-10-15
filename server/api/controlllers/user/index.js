@@ -27,10 +27,12 @@ const loginController = async (req, res) => {
       
     const jwtToken = jwt.sign(
       { id: userWithEmail._id, email: userWithEmail.email },
-      process.env.JWT_SECRET
+      process.env.JWT_SECRET,{
+        expiresIn: '10s'
+      }
     );
   
-    res.json({ message: "Welcome Back!", token: "Bearer " +jwtToken });
+    res.json({ message: "Welcome Back!", token: "Bearer " +jwtToken, expin: '10s' });
   }
 
 
