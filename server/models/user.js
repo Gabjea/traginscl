@@ -1,7 +1,7 @@
 const mongoose = require('../database/index')
 
 const UserSchema = mongoose.Schema({
-    id: mongoose.Schema.Types.ObjectId,
+    _id: mongoose.Types.ObjectId,
     username: {
         type: String,
         required: true
