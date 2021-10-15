@@ -4,7 +4,8 @@ const jwtDecoder = require("jwt-decode")
 const getUserByIdFromToken = async(token) =>{
     try {
         const id = jwtDecoder(token.split(' ')[1]).id
-        return await User.findOne({ where: { id } }).catch(
+        
+        return await User.findById(id).catch(
             (err) => {
               console.log("Error: ", err);
             }
