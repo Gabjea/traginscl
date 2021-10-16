@@ -1,9 +1,10 @@
 const User = require("../../models/user")
-const jwtDecoder = require("jwt-decode")
+const jwtDecoder = require("jwt-decode");
+const { nextTick } = require("@vue/runtime-core");
 
 const getUserByIdFromToken = async(token) =>{
     try {
-        const id = jwtDecoder(token.split(' ')[1]).id
+        const id = jwtDecoder(token).id
         
         return await User.findById(id).catch(
             (err) => {
@@ -15,6 +16,8 @@ const getUserByIdFromToken = async(token) =>{
         console.log(error)     
     }
 }
+
+
 
 
 module.exports = {

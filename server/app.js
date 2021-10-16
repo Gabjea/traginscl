@@ -3,6 +3,8 @@ const morgan = require("morgan");
 const helmet = require("helmet");
 const cors = require("cors");
 
+const fileUpload = require("express-fileupload")
+
 require("dotenv").config();
 //require("./auth/passport");
 
@@ -16,6 +18,9 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+app.use(fileUpload({
+  createParentPath: true
+}));
 app.use(morgan("dev"));
 app.use(helmet());
 app.use(cors());
