@@ -1,14 +1,21 @@
 const { Router } = require('express')
 const controller = require('../controlllers/user/index')
-const passport = require('../../auth/passport');
+const middlewares = require ('../../middlewares')
+
 const router = Router()
 
-const Auth = passport.authenticate("jwt", { session: false })
+const roles = { 
+    Admin : "admin",
+    User: "user"
+}
+
 // User Auth
 router.post("/login",controller.loginController)
 router.post("/register",controller.registerController)
-router.get("/account",Auth,controller.accountController)
 
+// User Permisions
+router.get("/account",middlewares.Auth,controller.accountController)
+router.post("/upload",middlewares.Auth,controller.fileUploadController)
 
 
 module.exports = router
